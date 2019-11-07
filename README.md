@@ -1,4 +1,4 @@
-# CS326FinalProject
+# SlippiBracketViewer
 
 ## The ELIs
 * [Eli Gukovsky](team/ELI_GUKOVSKY.md)
