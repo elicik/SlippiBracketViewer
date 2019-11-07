@@ -1,0 +1,2 @@
+# Eli Gukovsky
+I am very experienced with JavaScript and Python, and have solid/moderate experience with Java, TypeScript, and C. I have been doing web development for about 8 years, so I have experience with ECMAScript 2015, AngularJS (v1), React, Vue.js, Polymer, three.js, pixi.js, SCSS, TypeScript, ESLint, jQuery, and a few smaller libraries + REST APIs. As far as database development, I have experience with MySQL, PostgreSQL, and Firebase, with some limited exposure to MongoDB and some minimal experience with implementing these as REST and GraphQL APIs.
