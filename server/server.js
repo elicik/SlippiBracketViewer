@@ -6,4 +6,6 @@ app.get('/', function(req, res) {
 	res.send("Hello world!");
 });
 
-app.listen(3000);
+// app.use(express.static(__dirname + '/client'));
+
+module.exports = app;
