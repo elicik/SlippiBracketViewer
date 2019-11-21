@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <script src="test.json"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <script>
+    function init() {
+      var frame1 = window.frames['vis_1'];
+      frame1.start(slp_replay);
+    }
+  </script>
+  <body onload="init();">
+    <iframe name="vis_1" class="visualiser" src="lib/slippi/page.html"></iframe>
+  </body>
+</html>
