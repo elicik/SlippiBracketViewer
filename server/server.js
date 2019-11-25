@@ -32,6 +32,7 @@ app.get("/tournament/:id", function(req, res) {
 		return {
 			id: set.id,
 			identifier: set.identifier,
+			fullRoundText: set.fullRoundText,
 			score0: set.slots[0].standing.stats.score.value,
 			score1: set.slots[1].standing.stats.score.value,
 			tag0: set.slots[0].entrant.name,
@@ -75,6 +76,7 @@ app.get("/tournament/:id", function(req, res) {
 						nodes {
 							id
 							identifier
+							fullRoundText
 							displayScore
 							round
 							slots {

@@ -6,10 +6,11 @@
 /* CSS mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
 
 body {
-	background-color: #fa5a55 ;
+	background-color: #fa5a55;
+	font-size: 13px;
 }
 
-.wrapper {
+#wrapper {
 	display: flex;
 	height: 600px;
 	justify-content: center;
@@ -20,7 +21,7 @@ body {
 	flex-direction: row-reverse;
 }
 .item p {
-	padding: 20px;
+	padding: 5px;
 	margin: 0;
 	background-color: Beige;
 }
