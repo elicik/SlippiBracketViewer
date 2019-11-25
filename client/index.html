@@ -7,13 +7,77 @@
 		<!-- TODO: import jquery properly in something like webpack -->
 	</head>
 	<body>
-		<form id="form">
+<!-- 		<form id="form">
 			<label for="filename">Filename:</label>
 			<input type="text" name="filename" id="filename" />
 			<button type="button" name="submit" id="submit">Submit</button>
 		</form>
 		<br>
 		<iframe name="visualizer" id="visualizer" src="lib/slippi/page.html"></iframe>
-		<script src="script.js"></script>
+ -->	
+ 		<script src="script.js"></script>
+		<div class="wrapper">
+			<div class="item">
+				<div class="item-parent">
+					<p>asdf</p>
+				</div>
+				<div class="item-childrens">
+					<div class="item-child">
+						<div class="item">
+							<div class="item-parent">
+								<p>Parent</p>
+							</div>
+							<div class="item-childrens">
+								<div class="item-child">
+									<div class="item">
+										<div class="item-parent">
+											<p>Parent</p>
+										</div>
+										<div class="item-childrens">
+											<div class="item-child">
+												<p>child 1</p>
+											</div>
+											<div class="item-child">
+												<p>child 2</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item-child">
+									<p>child 2</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item-child">
+						<div class="item">
+							<div class="item-parent">
+								<p>Parent</p>
+							</div>
+							<div class="item-childrens">
+								<div class="item-child">
+									<div class="item">
+										<div class="item-parent">
+											<p>Parent</p>
+										</div>
+										<div class="item-childrens">
+											<div class="item-child">
+												<p>child 1</p>
+											</div>
+											<div class="item-child">
+												<p>child 2</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item-child">
+									<p>child 2</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

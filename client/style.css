@@ -1,4 +1,85 @@
+:root {
+	--side-margin: 50px;
+	--vertial-margin: 10px;
+}
+
+/* CSS mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
+
+body {
+	background-color: #fa5a55 ;
+}
+
+.wrapper {
+	display: flex;
+	height: 600px;
+	justify-content: center;
+}
+
+.item {
+	display: flex;
+	flex-direction: row-reverse;
+}
+.item p {
+	padding: 20px;
+	margin: 0;
+	background-color: Beige;
+}
+.item-parent {
+	position: relative;
+	margin-left: var(--side-margin);
+	display: flex;
+	align-items: center;
+}
+.item-parent::after {
+	position: absolute;
+	content: '';
+	width: calc(var(--side-margin)/2);
+	height: 2px;
+	left: 0;
+	top: 50%;
+	background-color: #fff;
+	transform: translateX(-100%);
+}
+.item-childrens {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.item-child {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	margin-top: var(--vertical-margin);
+	margin-bottom: var(--vertical-margin);
+	position: relative;
+}
+.item-child::before {
+	content: '';
+	position: absolute;
+	background-color: #fff;
+	right: 0;
+	top: 50%;
+	transform: translateX(100%);
+	width: 25px;
+	height: 2px;
+}
+.item-child::after {
+	content: '';
+	position: absolute;
+	background-color: #fff;
+	right: calc(var(--side-margin) / -2);
+	height: calc(50% + 22px) ;
+	width: 2px;
+	top: 50%;
+}
+.item-child:last-child::after {
+	transform: translateY(-100%);
+}
+.item-child:only-child::after {
+	display: none;
+}
+
 #visualizer {
-	width:640px;
-	height:480px;
+	width: 640px;
+	height: 480px;
 }
