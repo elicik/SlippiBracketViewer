@@ -24,33 +24,22 @@ app.get("/replay", function(req, res) {
 });
 
 app.get("/tournament/:id", function(req, res) {
-	let query1 = `query TournamentQuery($slug: String) {
-		tournament (slug: $slug) {
-			events {
-				id
-				name
-			}
+	let transform = function(sets, setid) {
+		let set = sets.find(x => x.id.toString() === setid.toString());
+		if (!set) {
+			return null;
 		}
-	}`;
-	let query2 = `query TournamentQuery($eventid: ID) {
-		event(id: $eventid) {
-			sets (page: 1, perPage: 500) {
-				nodes {
-					id
-					fullRoundText
-					displayScore
-					round
-					slots {
-						id
-						entrant {
-							name
-						}
-						prereqId
-					}
-				}
-			}
-		}
-	}`;
+		return {
+			id: set.id,
+			identifier: set.identifier,
+			score0: set.slots[0].standing.stats.score.value,
+			score1: set.slots[1].standing.stats.score.value,
+			tag0: set.slots[0].entrant.name,
+			tag1: set.slots[1].entrant.name,
+			previous0: transform(sets, set.slots[0].prereqId),
+			previous1: transform(sets, set.slots[1].prereqId)
+		};
+	};
 	fetch("https://api.smash.gg/gql/alpha", {
 		method: "POST",
 		headers: {
@@ -59,13 +48,20 @@ app.get("/tournament/:id", function(req, res) {
 			"Authorization": `Bearer ${process.env.SMASHGG_KEY}`
 		},
 		body: JSON.stringify({
-			query: query1,
+			query: `query TournamentQuery($slug: String) {
+				tournament (slug: $slug) {
+					events {
+						id
+						name
+					}
+				}
+			}`,
 			variables: { "slug": req.params.id },
 		})
 	})
 	.then(data => data.json())
-	.then(data => data["data"]["tournament"]["events"].find(event => event["name"] === "Melee Singles")["id"])
-	.then((data) => fetch("https://api.smash.gg/gql/alpha", {
+	.then(data => data.data.tournament.events.find(event => event.name === "Melee Singles").id)
+	.then(data => fetch("https://api.smash.gg/gql/alpha", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -73,16 +69,45 @@ app.get("/tournament/:id", function(req, res) {
 			"Authorization": `Bearer ${process.env.SMASHGG_KEY}`
 		},
 		body: JSON.stringify({
-			query: query2,
+			query: `query TournamentQuery($eventid: ID) {
+				event(id: $eventid) {
+					sets (page: 1, perPage: 500) {
+						nodes {
+							id
+							identifier
+							displayScore
+							round
+							slots {
+								id
+								standing {
+									stats {
+										score {
+											value
+										}
+									}
+								}
+								entrant {
+									name
+								}
+								prereqId
+							}
+						}
+					}
+				}
+			}`,
 			variables: { "eventid": data},
 		})
 	}))
 	.then(data => data.json())
+	.then(data => {
+		let sets = data.data.event.sets.nodes;
+		let maxround = Math.max(...sets.map(x => x.round));
+		let grandsid = sets.find(x => x.round === maxround).id;
+		return transform(sets, grandsid);
+	})
 	.then(data => res.send(data));
-	// .then(data => {
-
-	// })
 });
+
 
 app.use(express.static(path.join(__dirname, "../client")));
 
