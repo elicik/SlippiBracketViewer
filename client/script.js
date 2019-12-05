@@ -6,23 +6,18 @@
 // });
 
 let transform = function(set) {
-	if (set === null) {
-		return "<p>null</p>";
-	}
 	if (!set.previous0 && !set.previous1) {
 		return `<p>${set.fullRoundText}</p>`;
 	}
+	let child0 = set.previous0 === null ? "" : `<div class="item-child">${transform(set.previous0)}</div>`;
+	let child1 = set.previous1 === null ? "" : `<div class="item-child">${transform(set.previous1)}</div>`;
 	return `<div class="item">
 		<div class="item-parent">
 			<p>${set.fullRoundText}</p>
 		</div>
 		<div class="item-childrens">
-			<div class="item-child">
-				${transform(set.previous0)}
-			</div>
-			<div class="item-child">
-				${transform(set.previous1)}
-			</div>
+			${child0}
+			${child1}
 		</div>
 	</div>`;
 }
