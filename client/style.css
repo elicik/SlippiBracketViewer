@@ -19,6 +19,7 @@ body {
 .item {
 	display: flex;
 	flex-direction: row-reverse;
+	padding: 4px 0;
 }
 .item .set {
 	display: grid;
