@@ -29,6 +29,29 @@ app.get("/tournament/:id", function(req, res) {
 		if (!set) {
 			return null;
 		}
+		let losersFinalRound = Math.min(...sets.map(x => x.round));
+		let winnersFinalRound = Math.max(...sets.map(x => x.round));
+		let prev0set = sets.find(x => x.id.toString() === set.slots[0].prereqId.toString());
+		let prev1set = sets.find(x => x.id.toString() === set.slots[1].prereqId.toString());
+		let prev0obj = null;
+		let prev1obj = null;
+		if (set.round > 0) {
+			if (prev0set && (prev0set.round > 0 || prev0set.round === losersFinalRound)) {
+				prev0obj = transform(sets, set.slots[0].prereqId);
+			}
+			if (prev1set && (prev1set.round > 0 || prev1set.round === losersFinalRound)) {
+				prev1obj = transform(sets, set.slots[1].prereqId);
+			}
+		}
+		if (set.round < 0) {
+			if (prev0set && (prev0set.round < 0)) {
+				prev0obj = transform(sets, set.slots[0].prereqId);
+			}
+			if (prev1set && (prev1set.round < 0)) {
+				prev1obj = transform(sets, set.slots[1].prereqId);
+			}
+		}
+
 		return {
 			id: set.id,
 			identifier: set.identifier,
@@ -37,8 +60,8 @@ app.get("/tournament/:id", function(req, res) {
 			score1: set.slots[1].standing.stats.score.value,
 			tag0: set.slots[0].entrant.name,
 			tag1: set.slots[1].entrant.name,
-			previous0: transform(sets, set.slots[0].prereqId),
-			previous1: transform(sets, set.slots[1].prereqId)
+			previous0: prev0obj,
+			previous1: prev1obj
 		};
 	};
 	fetch("https://api.smash.gg/gql/alpha", {
@@ -104,6 +127,7 @@ app.get("/tournament/:id", function(req, res) {
 	.then(data => {
 		let sets = data.data.event.sets.nodes;
 		let maxround = Math.max(...sets.map(x => x.round));
+		let minround = Math.min(...sets.map(x => x.round));
 		let grandsid = sets.find(x => x.round === maxround).id;
 		return transform(sets, grandsid);
 	})

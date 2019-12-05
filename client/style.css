@@ -20,15 +20,18 @@ body {
 	display: flex;
 	flex-direction: row-reverse;
 }
-.item p {
-	padding: 5px;
-	margin: 0;
-	background-color: Beige;
+.item .set {
+	display: grid;
+	grid-template-columns: 100px 10px;
+	background: beige;
+	padding: 2px;
 }
+
 .item-parent {
 	position: relative;
 	margin-left: var(--side-margin);
 	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 .item-parent::after {
