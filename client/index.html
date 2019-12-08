@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-		<!-- TODO: import jquery properly in something like webpack -->
 	</head>
 	<body>
 <!-- 		<form id="form">
@@ -14,70 +14,42 @@
 		</form>
 		<br>
 		<iframe name="visualizer" id="visualizer" src="lib/slippi/page.html"></iframe>
- -->	
-		<div id="wrapper">
-<!-- 			<div class="item">
-				<div class="item-parent">
-					<p>asdf</p>
-				</div>
-				<div class="item-childrens">
-					<div class="item-child">
-						<div class="item">
-							<div class="item-parent">
-								<p>Parent</p>
-							</div>
-							<div class="item-childrens">
-								<div class="item-child">
-									<div class="item">
-										<div class="item-parent">
-											<p>Parent</p>
-										</div>
-										<div class="item-childrens">
-											<div class="item-child">
-												<p>child 1</p>
-											</div>
-											<div class="item-child">
-												<p>child 2</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item-child">
-									<p>child 2</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item-child">
-						<div class="item">
-							<div class="item-parent">
-								<p>Parent</p>
-							</div>
-							<div class="item-childrens">
-								<div class="item-child">
-									<div class="item">
-										<div class="item-parent">
-											<p>Parent</p>
-										</div>
-										<div class="item-childrens">
-											<div class="item-child">
-												<p>child 1</p>
-											</div>
-											<div class="item-child">
-												<p>child 2</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item-child">
-									<p>child 2</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
- -->		</div>
+ -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<iframe name="visualizer" id="visualizer" src="lib/slippi/page.html"></iframe>
+<!--         <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+ -->      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 		<div id="outer">
+			<div id="wrapper"></div>
+ 		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   		<script src="script.js"></script>
 	</body>
 </html>

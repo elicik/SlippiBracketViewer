@@ -1,19 +1,24 @@
 :root {
 	--side-margin: 50px;
 	--vertial-margin: 10px;
+	--slippi-height: 290px;
 }
 
 /* CSS mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
 
 body {
-	background-color: #fa5a55;
+	background-color: #36454F;
 	font-size: 13px;
 }
 
+#outer {
+	text-align: center;
+}
+
 #wrapper {
-	display: flex;
-	/*height: 600px;*/
-	justify-content: center;
+	display: inline-block;
+	text-align: left;
+	padding-right: 25px;
 }
 
 .item {
@@ -85,6 +90,6 @@ body {
 }
 
 #visualizer {
-	width: 640px;
-	height: 480px;
+	width: calc(var(--slippi-height) * 8 / 5);
+	height: var(--slippi-height);
 }
