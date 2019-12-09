@@ -11,4 +11,10 @@ We are creating a viewer for Super Smash Bros. Melee [brackets](http://www.smash
 
 ## Topic Requirements
 * Ajax
-* Data Storage
+* Mobile
+
+## Running Instructions
+1. `git clone https://github.com/elicik/SlippiBracketViewer.git`
+2. Copy your .env file containing a `SMASHGG_KEY` into the root folder
+3. `npm install`
+4. `node index.js`

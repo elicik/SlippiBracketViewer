@@ -2,7 +2,6 @@ let tournament = "the-zoo-the-bear-exhibit";
 let setid;
 let gamenum;
 
-
 let transform = function(set) {
 	let child0 = set.previous0 === null ? "" : `<div class="item-child">${transform(set.previous0)}</div>`;
 	let child1 = set.previous1 === null ? "" : `<div class="item-child">${transform(set.previous1)}</div>`;
