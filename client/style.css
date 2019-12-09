@@ -2,12 +2,13 @@
 	--side-margin: 50px;
 	--vertial-margin: 10px;
 	--slippi-width: calc(100vw - 16px);
+	--charcoal: #36454F;
 }
 
 /* CSS mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
 
 body {
-	background-color: #36454F;
+	background-color: var(--charcoal);
 	font-size: 13px;
 }
 
@@ -92,7 +93,7 @@ body {
 #visualizer {
 	width: var(--slippi-width);
 	height: calc(var(--slippi-width) * 5 / 8);
-	max-height: calc(100vh - 64px);
+	max-height: calc(100vh - 72px);
 }
 
 #modal {
@@ -103,9 +104,16 @@ body {
 	z-index: 1;
 }
 
-#close {
-	text-align: right;
+#topbar {
 	color: beige;
 	font-weight: bold;
 	font-size: large;
+	background: var(--charcoal);
+	padding: 4px;
+	border: 1px solid beige;
+	margin-bottom: 2px;
+}
+
+#close {
+	float: right;
 }
