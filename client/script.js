@@ -6,7 +6,7 @@ let transform = function(set) {
 	let child1 = set.previous1 === null ? "" : `<div class="item-child">${transform(set.previous1)}</div>`;
 	return `<div class="item">
 		<div class="item-parent">
-			<div class="set" data-toggle="modal" data-target="#modal" data-id="${set.id}" data-title="${set.fullRoundText + ": " + set.tag0 + " vs " + set.tag1}">
+			<div class="set" data-id="${set.id}" data-title="${set.fullRoundText + ": " + set.tag0 + " vs " + set.tag1}">
 				<div>${set.tag0}</div>
 				<div>${set.score0}</div>
 				<div>${set.tag1}</div>
@@ -29,15 +29,16 @@ function loadGame(id) {
 
 $.get("/tournament/" + tournament, function(data) {
 	$("#wrapper").html(transform(data));
+	$(".set").click(function(event) {
+		let target = $(event.currentTarget);
+		let id = target.data("id");
+		let title = target.data("title");
+		console.log(title);
+		gameNum = 1;
+		loadGame(id);
+		$("#modal").show();
+	});
 });
-
-$("#modal").on("show.bs.modal", function (event) {
-	let button = $(event.relatedTarget);
-	let id = button.data("id");
-	console.log(id);
-	let title = button.data("title");
-	let modal = $(this);
-	modal.find(".modal-title").text(title);
-	gameNum = 1;
-	loadGame(id);
+$("#close").click(function(event) {
+	$("#modal").hide();
 });

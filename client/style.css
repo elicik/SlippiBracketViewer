@@ -1,7 +1,7 @@
 :root {
 	--side-margin: 50px;
 	--vertial-margin: 10px;
-	--slippi-height: 290px;
+	--slippi-width: calc(100vw - 16px);
 }
 
 /* CSS mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
@@ -90,6 +90,22 @@ body {
 }
 
 #visualizer {
-	width: calc(var(--slippi-height) * 8 / 5);
-	height: var(--slippi-height);
+	width: var(--slippi-width);
+	height: calc(var(--slippi-width) * 5 / 8);
+	max-height: calc(100vh - 64px);
+}
+
+#modal {
+	display: none;
+	position: fixed;
+	bottom: 8px;
+	left: 8px;
+	z-index: 1;
+}
+
+#close {
+	text-align: right;
+	color: beige;
+	font-weight: bold;
+	font-size: large;
 }
