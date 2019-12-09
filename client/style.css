@@ -27,11 +27,26 @@ body {
 	flex-direction: row-reverse;
 	padding: 4px 0;
 }
+
+.item .set:hover {
+	background: #d4d4c1;
+	cursor: pointer;
+}
+
 .item .set {
 	display: grid;
 	grid-template-columns: 100px 10px;
 	background: beige;
 	padding: 2px;
+}
+
+.item .set > div:nth-child(1), .item .set > div:nth-child(2) {
+	border-bottom: 1px solid black;
+}
+
+.item .set > div:nth-child(even) {
+	text-align: right;
+	border-left: 1px solid black;
 }
 
 .item-parent {
@@ -102,6 +117,7 @@ body {
 	bottom: 8px;
 	left: 8px;
 	z-index: 1;
+	background-color: var(--charcoal);
 }
 
 #topbar {
@@ -112,8 +128,10 @@ body {
 	padding: 4px;
 	border: 1px solid beige;
 	margin-bottom: 2px;
+	text-align: center;
 }
 
 #close {
 	float: right;
+	cursor: pointer;
 }
