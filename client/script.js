@@ -39,10 +39,12 @@ let transform = function(set) {
 
 function loadGame() {
 	$("#gamenum").text(gamenum);
-	$("#visualizer").get(0).contentWindow.location.reload(true);
-	$.get("/replay", `filename=${tournament}/${setid}_Game${gamenum}.slp`, function(resp) {
-		$("#visualizer").get(0).contentWindow.start(resp);
+	$("#visualizer").on("load", function() {
+		$.get("/replay", `filename=${tournament}/${setid}_Game${gamenum}.slp`, function(resp) {
+			$("#visualizer").get(0).contentWindow.start(resp);
+		})
 	});
+	$("#visualizer").get(0).contentWindow.location.reload(true);
 }
 
 function loadTournament() {
