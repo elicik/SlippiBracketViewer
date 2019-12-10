@@ -45,30 +45,32 @@ function loadGame() {
 	});
 }
 
-$.get("/tournament-info/" + tournament, function(data) {
-	$("#titlename").text(data.name);
-	console.log(data.img);
-	$("#titleimg").attr("src", data.img);
-});
-
-$.get("/tournament/" + tournament, function(data) {
-	$("#wrapper").html(transform(data));
-	$(".set").click(function(event) {
-		let target = $(event.currentTarget);
-		let title = target.data("title");
-		let totalgames = target.data("totalgames");
-		setid = target.data("id");
-		gamenum = 1;
-		$("#gametitle").text(title);
-		let options = "";
-		for (let i = 1; i <= totalgames; i++) {
-			options += `<option value="${i}">Game ${i}</option>`
-		}
-		$("#select").html(options);
-		loadGame();
-		$("#modal").show();
+function loadTournament() {
+	$.get("/tournament-info/" + tournament, function(data) {
+		$("#titlename").text(data.name);
+		$("#titleimg").attr("src", data.img);
 	});
-});
+
+	$.get("/tournament/" + tournament, function(data) {
+		$("#wrapper").html(transform(data));
+		$(".set").click(function(event) {
+			let target = $(event.currentTarget);
+			let title = target.data("title");
+			let totalgames = target.data("totalgames");
+			setid = target.data("id");
+			gamenum = 1;
+			$("#gametitle").text(title);
+			let options = "";
+			for (let i = 1; i <= totalgames; i++) {
+				options += `<option value="${i}">Game ${i}</option>`
+			}
+			$("#select").html(options);
+			loadGame();
+			$("#modal").show();
+		});
+	});
+}
+
 $("#close").click(function(event) {
 	$("#modal").hide();
 });
@@ -76,3 +78,9 @@ $("#select").change(function(event) {
 	gamenum = $("#select").val();
 	loadGame();
 });
+$("#chooseyourtournament").change(function(event) {
+	tournament = $("#chooseyourtournament").val();
+	loadTournament();
+});
+
+loadTournament();

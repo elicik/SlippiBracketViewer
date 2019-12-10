@@ -147,6 +147,12 @@ body {
 	cursor: pointer;
 }
 
+#chooseyourtournamentwrapper {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
 #titlebar {
 	display: flex;
 	flex-direction: row;
