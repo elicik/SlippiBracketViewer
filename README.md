@@ -12,6 +12,7 @@ We are creating a viewer for Super Smash Bros. Melee [brackets](http://www.smash
 ## Topic Requirements
 * Ajax
 * Mobile
+* Server-side
 
 ## Running Instructions
 1. `git clone https://github.com/elicik/SlippiBracketViewer.git`

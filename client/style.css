@@ -1,6 +1,5 @@
 :root {
 	--side-margin: 50px;
-	--vertial-margin: 10px;
 	--slippi-width: calc(100vw - 16px);
 	--charcoal: #36454F;
 	--titlebarheight: 140px;
@@ -23,6 +22,7 @@ body {
 	text-align: left;
 	padding-right: 25px;
 	padding-top: var(--titlebarheight);
+	padding-bottom: 120px;
 }
 
 .item {
@@ -86,8 +86,6 @@ body {
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-end;
-	margin-top: var(--vertical-margin);
-	margin-bottom: var(--vertical-margin);
 	position: relative;
 }
 .item-child::before {
@@ -116,6 +114,18 @@ body {
 	display: none;
 }
 
+#logo {
+	height: 100px;
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0);
+	margin-top: 10px;
+	background-color: var(--charcoal);
+}
+
+#logo img {
+	height: 100%;
+}
 #visualizer {
 	width: var(--slippi-width);
 	height: calc(var(--slippi-width) * 5 / 8);
@@ -151,6 +161,9 @@ body {
 	position: fixed;
 	left: 50%;
 	transform: translate(-50%, 0);
+	bottom: 120px;
+	z-index: 10;
+	background-color: var(--charcoal);
 }
 
 #titlebar {
@@ -174,6 +187,8 @@ body {
 	font-weight: bold;
 	margin-left: 50px;
 }
+
+
 
 @media only screen and (max-width: 600px) {
 	:root {
