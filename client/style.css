@@ -11,10 +11,16 @@ body {
 	background-color: var(--charcoal);
 	font-size: 13px;
 	font-family: sans-serif;
+	margin-left: 0px;
+	margin-top: 0px;
 }
 
 #outer {
 	text-align: center;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-bottom: 20px;
+	padding-right: 10px;
 }
 
 #wrapper {
@@ -159,33 +165,55 @@ body {
 
 #chooseyourtournamentwrapper {
 	position: fixed;
+	display: flex;
+	align-items: top;
 	left: 50%;
 	transform: translate(-50%, 0);
-	bottom: 120px;
+	bottom: 0px;
 	z-index: 10;
 	background-color: var(--charcoal);
+	width: 100%;
+	padding-top: 20px;
+	border-top: 2px solid rgb(6, 8, 10);
+	height: 140px;
+}
+
+#chooseyourtournamentinner {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 #titlebar {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: left;
 	align-content: flex-start;
 	align-items: center;
 	position: fixed;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid rgb(6, 8, 10);
+	width: 100%;
+	background-color: var(--charcoal);
+	z-index: 10;
 }
 
 #titleimg {
 	height: var(--titlebarheight);
 	width: var(--titlebarheight);
+	border: 2px solid rgb(6, 8, 10);
 }
 
 #titlename {
 	color: white;
 	font-size: 36pt;
 	font-weight: bold;
-	margin-left: 50px;
+	margin-left: 30px;
+	text-shadow: 4px 4px rgba(6, 8, 10, 0.75);
 }
 
 
