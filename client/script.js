@@ -1,4 +1,4 @@
-let tournament = "the-zoo-the-bear-exhibit";
+let tournament = "the-zoo-the-alligator-exhibit";
 let setid;
 let gamenum;
 
