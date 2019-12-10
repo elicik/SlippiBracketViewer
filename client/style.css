@@ -10,6 +10,7 @@
 body {
 	background-color: var(--charcoal);
 	font-size: 13px;
+	font-family: sans-serif;
 }
 
 #outer {
@@ -35,11 +36,17 @@ body {
 
 .item .set {
 	display: grid;
-	grid-template-columns: 100px 10px;
+	grid-template-columns: 110px 10px;
 	background: beige;
 	padding: 2px;
 	box-shadow: 3px 3px rgba(6, 8, 10, 0.75);
 	z-index: 2;
+}
+
+.item .set > div {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .item .set > div:nth-child(1), .item .set > div:nth-child(2) {
