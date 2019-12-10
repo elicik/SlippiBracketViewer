@@ -8,7 +8,6 @@ const app = express();
 
 
 app.get("/replay", function(req, res) {
-	// TODO: connect with database
 	let filename = req.query.filename;
 	console.log(`Requested file: ${filename}`);
 	let game = new SlippiGame(path.join(__dirname, "replays/", filename));
@@ -21,6 +20,31 @@ app.get("/replay", function(req, res) {
 	};
 	res.send(result);
 	console.log("Game data sent to client");
+});
+
+app.get("/tournament-info/:id", function(req, res) {
+	fetch("https://api.smash.gg/gql/alpha", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json",
+			"Authorization": `Bearer ${process.env.SMASHGG_KEY}`
+		},
+		body: JSON.stringify({
+			query: `query TournamentQuery($slug: String) {
+				tournament (slug: $slug) {
+					name
+					images (type: "profile") {
+						url
+						type
+					}
+				}
+			}`,
+			variables: { "slug": req.params.id },
+		})
+	})
+	.then(data => data.json())
+	.then(data => res.send({ name: data.data.tournament.name, profile: data.data.tournament.images.find(img => img.type === "profile").url}));
 });
 
 app.get("/tournament/:id", function(req, res) {
