@@ -44,7 +44,7 @@ app.get("/tournament-info/:id", function(req, res) {
 		})
 	})
 	.then(data => data.json())
-	.then(data => res.send({ name: data.data.tournament.name, profile: data.data.tournament.images.find(img => img.type === "profile").url}));
+	.then(data => res.send({ name: data.data.tournament.name, img: data.data.tournament.images.find(img => img.type === "profile").url}));
 });
 
 app.get("/tournament/:id", function(req, res) {

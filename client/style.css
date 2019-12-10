@@ -3,6 +3,7 @@
 	--vertial-margin: 10px;
 	--slippi-width: calc(100vw - 16px);
 	--charcoal: #36454F;
+	--titlebarheight: 140px;
 }
 
 /* CSS for the bracket mostly based off of https://codepen.io/sdudnyk/pen/bWbqMb */
@@ -21,6 +22,7 @@ body {
 	display: inline-block;
 	text-align: left;
 	padding-right: 25px;
+	padding-top: var(--titlebarheight);
 }
 
 .item {
@@ -143,4 +145,37 @@ body {
 #close {
 	float: right;
 	cursor: pointer;
+}
+
+#titlebar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: center;
+	position: fixed;
+}
+
+#titleimg {
+	height: var(--titlebarheight);
+	width: var(--titlebarheight);
+}
+
+#titlename {
+	color: white;
+	font-size: 36pt;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+	:root {
+		--titlebarheight: 70px;
+	}
+
+	#titlename {
+		font-size: 14pt;
+		margin-left: 10px;
+	}
 }

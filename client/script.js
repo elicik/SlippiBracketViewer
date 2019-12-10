@@ -45,6 +45,12 @@ function loadGame() {
 	});
 }
 
+$.get("/tournament-info/" + tournament, function(data) {
+	$("#titlename").text(data.name);
+	console.log(data.img);
+	$("#titleimg").attr("src", data.img);
+});
+
 $.get("/tournament/" + tournament, function(data) {
 	$("#wrapper").html(transform(data));
 	$(".set").click(function(event) {
@@ -53,7 +59,7 @@ $.get("/tournament/" + tournament, function(data) {
 		let totalgames = target.data("totalgames");
 		setid = target.data("id");
 		gamenum = 1;
-		$("#title").text(title);
+		$("#gametitle").text(title);
 		let options = "";
 		for (let i = 1; i <= totalgames; i++) {
 			options += `<option value="${i}">Game ${i}</option>`
