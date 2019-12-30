@@ -3,23 +3,31 @@ const path = require("path");
 const express = require("express");
 const fetch = require("node-fetch");
 const { default: SlippiGame } = require("slp-parser-js");
+const { Storage } = require("@google-cloud/storage");
 
 const app = express();
-
+const storage = new Storage();
+const bucket = storage.bucket("umass-slippi-viewer.appspot.com");
 
 app.get("/replay", function(req, res) {
 	let filename = req.query.filename;
 	console.log(`Requested file: ${filename}`);
-	let game = new SlippiGame(path.join(__dirname, "replays/", filename));
-	let result = {
-		"data": {
-			"settings": game.getSettings(),
-			"frames": game.getFrames(),
-			"metadata": game.getMetadata()
-		}
-	};
-	res.send(result);
-	console.log("Game data sent to client");
+	let file = bucket.file("replays/" + filename);
+	file.download()
+	.then((data) => {
+		const contents = data[0];  // contents is the file as Buffer
+		let game = new SlippiGame(contents);
+		// let game = new SlippiGame(path.join(__dirname, "replays/", filename));
+		let result = {
+			"data": {
+				"settings": game.getSettings(),
+				"frames": game.getFrames(),
+				"metadata": game.getMetadata()
+			}
+		};
+		res.send(result);
+		console.log("Game data sent to client");
+	});
 });
 
 app.get("/tournament-info/:id", function(req, res) {
