@@ -12,12 +12,8 @@ const bucket = storage.bucket("umass-slippi-viewer.appspot.com");
 app.get("/replay", function(req, res) {
 	let filename = req.query.filename;
 	console.log(`Requested file: ${filename}`);
-	let file = bucket.file("replays/" + filename);
-	file.download()
-	.then((data) => {
-		const contents = data[0];  // contents is the file as Buffer
-		let game = new SlippiGame(contents);
-		// let game = new SlippiGame(path.join(__dirname, "replays/", filename));
+	if (process.argv.includes("local")) {
+		let game = new SlippiGame(path.join(__dirname, "replays/", filename));
 		let result = {
 			"data": {
 				"settings": game.getSettings(),
@@ -26,8 +22,25 @@ app.get("/replay", function(req, res) {
 			}
 		};
 		res.send(result);
-		console.log("Game data sent to client");
-	});
+		console.log("Game data sent to client");		
+	}
+	else {
+		let file = bucket.file("replays/" + filename);
+		file.download()
+		.then((data) => {
+			const contents = data[0];  // contents is the file as Buffer
+			let game = new SlippiGame(contents);
+			let result = {
+				"data": {
+					"settings": game.getSettings(),
+					"frames": game.getFrames(),
+					"metadata": game.getMetadata()
+				}
+			};
+			res.send(result);
+			console.log("Game data sent to client");
+		})
+	};
 });
 
 app.get("/tournament-info/:id", function(req, res) {
