@@ -1,3 +1,4 @@
 node_modules/
 .env
 slippiviewer.json
+server/replays/

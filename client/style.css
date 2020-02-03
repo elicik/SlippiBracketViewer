@@ -163,6 +163,12 @@ body {
 	cursor: pointer;
 }
 
+#download {
+	float: left;
+	color: inherit;
+	text-decoration: inherit;
+}
+
 #chooseyourtournamentwrapper {
 	position: fixed;
 	display: flex;

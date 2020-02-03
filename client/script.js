@@ -1,4 +1,4 @@
-let tournament = "the-zoo-the-alligator-exhibit";
+let tournament = $("#chooseyourtournament").val();
 let setid;
 let gamenum;
 
@@ -38,9 +38,11 @@ let transform = function(set) {
 }
 
 function loadGame() {
-	$("#gamenum").text(gamenum);
 	$("#visualizer").get(0).contentWindow.location.reload(true);
-	$.get("/replay", `filename=${tournament}/${setid}_Game${gamenum}.slp`, function(resp) {
+	let filename = `${tournament}/${setid}_Game${gamenum}.slp`;
+	$("#gamenum").text(gamenum);
+	$("#download").attr("href", `https://storage.googleapis.com/umass-slippi-viewer.appspot.com/replays/${filename}`);
+	$.get("/replay", `filename=${filename}`, function(resp) {
 		$("#visualizer").get(0).contentWindow.start(resp);
 	});
 }
